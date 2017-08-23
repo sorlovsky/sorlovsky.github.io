@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Simon Orlovsky'
-SITENAME = 'orlovsky.blog'
+SITENAME = 'Data Science and Software Engineering'
 SITEURL = ''
 #THEME = 'pelican-themes/pelican-bootstrap3/'
 
@@ -26,15 +26,13 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-# Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
+# Links
+LINKS = (('Dormcuts in USA Today', 'http://college.usatoday.com/2015/10/17/dorm-hair-cuts/'),
+         ('Dancing with the Stars', 'https://www.youtube.com/watch?v=Dpy_5Hy0zv8'))
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('Instagram', 'http://instagram.com/simonorlovsky'),
+          ('LinkedIn', 'http://linkedin.com/in/simonorlovsky'),)
 
 DEFAULT_PAGINATION = 10
 JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
