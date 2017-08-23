@@ -2,22 +2,15 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = 'Simon Orlovsky'
-SITENAME = 'Data Science and Software Engineering'
+AUTHOR = u'Simon Orlovsky'
+SITENAME = u'Piegenstuff'
 SITEURL = ''
-#THEME = 'pelican-themes/pelican-bootstrap3/'
-
-MARKUP = ('md', 'ipynb')
-
-PLUGIN_PATHS = ['./plugins']
-PLUGINS = ['ipynb.markup']
-IGNORE_FILES = ['.ipynb_checkpoints']
 
 PATH = 'content'
 
-TIMEZONE = 'America/Los_Angeles'
+TIMEZONE = 'America/Los_Angeles'    
 
-DEFAULT_LANG = 'en'
+DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -35,7 +28,12 @@ SOCIAL = (('Instagram', 'http://instagram.com/simonorlovsky'),
           ('LinkedIn', 'http://linkedin.com/in/simonorlovsky'),)
 
 DEFAULT_PAGINATION = 10
-JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
+
+MARKUP = ('md', 'ipynb')
+
+PLUGIN_PATHS = ['./plugins']
+PLUGINS = ['ipynb.markup']
+
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True

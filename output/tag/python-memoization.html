@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>Data Science and Software Engineering - Simon Orlovsky</title>
+        <title>Data Science and Software Engineering - python memoization</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
 
         <!--[if IE]>
@@ -14,13 +14,14 @@
         <header id="banner" class="body">
                 <h1><a href="/">Data Science and Software Engineering </a></h1>
                 <nav><ul>
-                    <li><a href="/category/posts.html">Posts</a></li>
+                    <li><a href="/category/posts.html">posts</a></li>
+                    <li><a href="/category/review.html">Review</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/welcome.html">Welcome to My Blog</a></h1>
+                    <h1 class="entry-title"><a href="/intro-to-memoization.html">Intro to Memoization</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2017-08-23T20:00:00-07:00">
                 Published: Wed 23 August 2017
@@ -29,8 +30,8 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/simon-orlovsky.html">Simon Orlovsky</a>
         </address>
-<p>In <a href="/category/posts.html">Posts</a>.</p>
-
+<p>In <a href="/category/posts.html">posts</a>.</p>
+<p>tags: <a href="/tag/python-memoization.html">python memoization</a> </p>
 </footer><!-- /.post-info --><style type="text/css">/*!
 *
 * IPython notebook
@@ -1007,23 +1008,13 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="First-Blog-Post">First Blog Post<a class="anchor-link" href="#First-Blog-Post">Â¶</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>My first post is going to be a bit meta. I've wanted to start a blog for a while, but have been constantly debating about whether I wanted it to be a Hugo blog, a web app, WordPress or whatever. Ultimately I'm settling on using a Pelican, a pretty awesome tool to make static websites.</p>
-<p>The reason I'm going with it is because it has great support for writing posts with iPython notebooks. So it's easy to embed, code, LaTeX, and pretty much anything in the daily workflow of a data scientist/software engineer.</p>
-<p>Here's an example of some code:</p>
+<h1 id="Test-iPython-Notebook">Test iPython Notebook<a class="anchor-link" href="#Test-iPython-Notebook">Â¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -1038,7 +1029,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -1049,7 +1040,7 @@ h6:hover .anchor-link {
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[12]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>89</pre>
 </div>
@@ -1057,46 +1048,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Example of some LateX:</p>
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c">%%latex</span>
-<span class="sb">$$</span><span class="nb">c </span><span class="o">=</span><span class="nb"> </span><span class="nv">\sqrt</span><span class="nb">{a^</span><span class="m">2</span><span class="nb"> </span><span class="o">+</span><span class="nb"> b^</span><span class="m">2</span><span class="nb">}</span><span class="s">$$</span>
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 </div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_latex output_subarea ">
-$$c = \sqrt{a^2 + b^2}$$
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>I am really inspired by the DataQuest community so I want to contribute to it and share some of the stuff that I've been working on.</p>
-<p>Here are some of my favorite posts that I hope to emulate:</p>
-<ul>
-<li><a href="https://www.dataquest.io/blog/apartment-finding-slackbot/">Apartment finding with Slack</a></li>
-<li><a href="https://www.dataquest.io/blog/kaggle-getting-started/">Getting started with Kaggle</a></li>
-</ul>
 </div>
 </div>
 </div>
@@ -1135,16 +1094,18 @@ $$c = \sqrt{a^2 + b^2}$$
                 <div class="blogroll">
                         <h2>blogroll</h2>
                         <ul>
-                            <li><a href="http://college.usatoday.com/2015/10/17/dorm-hair-cuts/">Dormcuts in USA Today</a></li>
-                            <li><a href="https://www.youtube.com/watch?v=Dpy_5Hy0zv8">Dancing with the Stars</a></li>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
                         </ul>
                 </div><!-- /.blogroll -->
                 <div class="social">
                         <h2>social</h2>
                         <ul>
 
-                            <li><a href="http://instagram.com/simonorlovsky">Instagram</a></li>
-                            <li><a href="http://linkedin.com/in/simonorlovsky">LinkedIn</a></li>
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
                         </ul>
                 </div><!-- /.social -->
         </section><!-- /#extras -->
