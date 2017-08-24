@@ -34,6 +34,8 @@ MARKUP = ('md', 'ipynb')
 PLUGIN_PATHS = ['./plugins']
 PLUGINS = ['ipynb.markup']
 
+THEME = 'voidy-bootstrap'
+
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
