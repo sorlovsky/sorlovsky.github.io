@@ -976,15 +976,6 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="First-Blog-Post"&gt;First Blog Post&lt;a class="anchor-link" href="#First-Blog-Post"&gt;¶&lt;/a&gt;&lt;/h1&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;My first post is going to be a bit meta. I've wanted to start a blog for a while, but have been constantly debating about whether I wanted it to be a Hugo blog, a web app, WordPress or whatever. Ultimately I'm settling on using a Pelican, a pretty awesome tool to make static websites.&lt;/p&gt;
 &lt;p&gt;The reason I'm going with it is because it has great support for writing posts with iPython notebooks. So it's easy to embed, code, LaTeX, and pretty much anything in the daily workflow of a data scientist/software engineer.&lt;/p&gt;
 &lt;p&gt;Here's an example of some code:&lt;/p&gt;
