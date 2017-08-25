@@ -8,7 +8,7 @@
     <meta name="author" content="Simon Orlovsky" />
     <meta name="generator" content="Pelican (VoidyBootstrap theme)" />
 
-    <title>Welcome to My Blog - Piegenstuff</title>
+    <title>Thanksgiving Data Analysis - Piegenstuff</title>
 
    
         <link rel="stylesheet"
@@ -77,9 +77,9 @@
 <abbr class="article-header-date">
   Wed 23 August 2017
 </abbr> <h1>
-  <a href="http://sorlovsky.github.io/welcome.html" rel="bookmark"
-     title="Permalink to Welcome to My Blog">
-    Welcome to My Blog
+  <a href="http://sorlovsky.github.io/thanksgiving-data-analysis.html" rel="bookmark"
+     title="Permalink to Thanksgiving Data Analysis">
+    Thanksgiving Data Analysis
   </a>
 </h1><div class="article-header-info">
   <p>
@@ -1068,33 +1068,43 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>My first post is going to be a bit meta. I've wanted to start a blog for a while, but have been constantly debating about whether I wanted it to be a Hugo blog, a web app, WordPress or whatever. Ultimately I'm settling on using a Pelican, a pretty awesome tool to make static websites.</p>
-<p>The reason I'm going with it is because it has great support for writing posts with iPython notebooks. So it's easy to embed, code, LaTeX, and pretty much anything in the daily workflow of a data scientist/software engineer.</p>
-<p>Here's an example of some code:</p>
+<p>Is their a difference in how men and women rate Airbnb's in Seattle? In this post we're going to be looking at 1500 Airbnb reviews to answer that question.</p>
+<p>The data we will be using can be found on <a href="https://www.kaggle.com/airbnb/seattle">Kaggle</a></p>
+<p>The gender guesser library is a module that gives functions that will decide whether a name is female or male. The vaderSentiment analysis is a library that determines whether a body of text is positive or negative in its sentiment. When joined together we can use these modules to see differences in how men and women review Airbnbs.</p>
+<p>To get started we're going to import the following libraries. They can be installed with pip if you don't have them.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">gender_guesser.detector</span> <span class="k">as</span> <span class="nn">gender</span>
+<span class="kn">from</span> <span class="nn">vaderSentiment.vaderSentiment</span> <span class="k">import</span> <span class="n">SentimentIntensityAnalyzer</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next we will read in the data and see what we're working with. We're only going to look at the first 1500 reviews.</p>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fibonacci</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">reviews</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'seattle-airbnb-open-data/reviews.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+<span class="n">reviews</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1102,9 +1112,65 @@ h6:hover .anchor-link {
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[12]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>89</pre>
+<div class="prompt output_prompt">Out[2]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>listing_id</th>
+<th>id</th>
+<th>date</th>
+<th>reviewer_id</th>
+<th>reviewer_name</th>
+<th>comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>7202016</td>
+<td>38917982</td>
+<td>2015-07-19</td>
+<td>28943674</td>
+<td>Bianca</td>
+<td>Cute and cozy place. Perfect location to every...</td>
+</tr>
+<tr>
+<th>1</th>
+<td>7202016</td>
+<td>39087409</td>
+<td>2015-07-20</td>
+<td>32440555</td>
+<td>Frank</td>
+<td>Kelly has a great room in a very central locat...</td>
+</tr>
+<tr>
+<th>2</th>
+<td>7202016</td>
+<td>39820030</td>
+<td>2015-07-26</td>
+<td>37722850</td>
+<td>Ian</td>
+<td>Very spacious apartment, and in a great neighb...</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -1115,17 +1181,260 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Example of some LateX:</p>
+<p>We currently know the first names of the reviewer but we don't know what gender they are.</p>
+<p>Using the gender_guesser library we can assign each listing a gender</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c">%%latex</span>
-<span class="sb">$$</span><span class="nb">c </span><span class="o">=</span><span class="nb"> </span><span class="nv">\sqrt</span><span class="nb">{a^</span><span class="m">2</span><span class="nb"> </span><span class="o">+</span><span class="nb"> b^</span><span class="m">2</span><span class="nb">}</span><span class="s">$$</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">gender</span><span class="o">.</span><span class="n">Detector</span><span class="p">()</span>
+<span class="n">reviews</span><span class="p">[</span><span class="s1">'gender'</span><span class="p">]</span> <span class="o">=</span> <span class="n">reviews</span><span class="p">[</span><span class="s1">'reviewer_name'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">get_gender</span><span class="p">)</span>
+<span class="n">reviews</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[3]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>listing_id</th>
+<th>id</th>
+<th>date</th>
+<th>reviewer_id</th>
+<th>reviewer_name</th>
+<th>comments</th>
+<th>gender</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>7202016</td>
+<td>38917982</td>
+<td>2015-07-19</td>
+<td>28943674</td>
+<td>Bianca</td>
+<td>Cute and cozy place. Perfect location to every...</td>
+<td>female</td>
+</tr>
+<tr>
+<th>1</th>
+<td>7202016</td>
+<td>39087409</td>
+<td>2015-07-20</td>
+<td>32440555</td>
+<td>Frank</td>
+<td>Kelly has a great room in a very central locat...</td>
+<td>male</td>
+</tr>
+<tr>
+<th>2</th>
+<td>7202016</td>
+<td>39820030</td>
+<td>2015-07-26</td>
+<td>37722850</td>
+<td>Ian</td>
+<td>Very spacious apartment, and in a great neighb...</td>
+<td>male</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next, we need to assign sentiment to each of the reviews.</p>
+<p>The polarity score assigned by vader is returned in a dictionary so we're going to need to do a little bit of pandas finagling to get the data in the shape we want it.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">analyzer</span> <span class="o">=</span> <span class="n">SentimentIntensityAnalyzer</span><span class="p">()</span>
+
+<span class="n">analyzer</span><span class="o">.</span><span class="n">polarity_scores</span><span class="p">(</span><span class="s1">'Cute and cozy place. Perfect location to everything! '</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>{'compound': 0.7901, 'neg': 0.0, 'neu': 0.462, 'pos': 0.538}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">reviews</span><span class="p">[</span><span class="s1">'vader'</span><span class="p">]</span> <span class="o">=</span> <span class="n">reviews</span><span class="p">[</span><span class="s1">'comments'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">analyzer</span><span class="o">.</span><span class="n">polarity_scores</span><span class="p">)</span>
+<span class="n">reviews</span> <span class="o">=</span> <span class="n">reviews</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">reviews</span><span class="p">[</span><span class="s1">'vader'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">))</span>
+<span class="n">reviews</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[5]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>listing_id</th>
+<th>id</th>
+<th>date</th>
+<th>reviewer_id</th>
+<th>reviewer_name</th>
+<th>comments</th>
+<th>gender</th>
+<th>vader</th>
+<th>compound</th>
+<th>neg</th>
+<th>neu</th>
+<th>pos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>7202016</td>
+<td>38917982</td>
+<td>2015-07-19</td>
+<td>28943674</td>
+<td>Bianca</td>
+<td>Cute and cozy place. Perfect location to every...</td>
+<td>female</td>
+<td>{'neg': 0.0, 'neu': 0.462, 'pos': 0.538, 'comp...</td>
+<td>0.7901</td>
+<td>0.000</td>
+<td>0.462</td>
+<td>0.538</td>
+</tr>
+<tr>
+<th>1</th>
+<td>7202016</td>
+<td>39087409</td>
+<td>2015-07-20</td>
+<td>32440555</td>
+<td>Frank</td>
+<td>Kelly has a great room in a very central locat...</td>
+<td>male</td>
+<td>{'neg': 0.0, 'neu': 0.609, 'pos': 0.391, 'comp...</td>
+<td>0.9872</td>
+<td>0.000</td>
+<td>0.609</td>
+<td>0.391</td>
+</tr>
+<tr>
+<th>2</th>
+<td>7202016</td>
+<td>39820030</td>
+<td>2015-07-26</td>
+<td>37722850</td>
+<td>Ian</td>
+<td>Very spacious apartment, and in a great neighb...</td>
+<td>male</td>
+<td>{'neg': 0.043, 'neu': 0.772, 'pos': 0.185, 'co...</td>
+<td>0.8718</td>
+<td>0.043</td>
+<td>0.772</td>
+<td>0.185</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we have the sentiment for each of the reviews. We can use this information to finally figure out each groups positive and negative sentiment.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">female_pos</span> <span class="o">=</span> <span class="n">reviews</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">reviews</span><span class="o">.</span><span class="n">gender</span> <span class="o">==</span> <span class="s1">'female'</span><span class="p">]</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">male_pos</span> <span class="o">=</span> <span class="n">reviews</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">reviews</span><span class="o">.</span><span class="n">gender</span> <span class="o">==</span> <span class="s1">'male'</span><span class="p">]</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">male_neg</span> <span class="o">=</span> <span class="n">reviews</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">reviews</span><span class="o">.</span><span class="n">gender</span> <span class="o">==</span> <span class="s1">'male'</span><span class="p">]</span><span class="o">.</span><span class="n">neg</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">female_neg</span> <span class="o">=</span> <span class="n">reviews</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">reviews</span><span class="o">.</span><span class="n">gender</span> <span class="o">==</span> <span class="s1">'female'</span><span class="p">]</span><span class="o">.</span><span class="n">neg</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Female positivity score: </span><span class="si">{}</span><span class="s2">, Male positivity score: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">female_pos</span><span class="p">,</span> <span class="n">male_pos</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Female negativity score: </span><span class="si">{}</span><span class="s2">, Male negativity score: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">female_neg</span><span class="p">,</span> <span class="n">male_neg</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1134,8 +1443,10 @@ h6:hover .anchor-link {
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_latex output_subarea ">
-$$c = \sqrt{a^2 + b^2}$$
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Female positivity score: 0.30064392678868573, Male positivity score: 0.30319217081850547
+Female negativity score: 0.01214309484193011, Male negativity score: 0.011062277580071167
+</pre>
 </div>
 </div>
 </div>
@@ -1146,12 +1457,28 @@ $$c = \sqrt{a^2 + b^2}$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I am really inspired by the DataQuest community so I want to contribute to it and share some of the stuff that I've been working on.</p>
-<p>Here are some of my favorite posts that I hope to emulate:</p>
-<ul>
-<li><a href="https://www.dataquest.io/blog/apartment-finding-slackbot/">Apartment finding with Slack</a></li>
-<li><a href="https://www.dataquest.io/blog/kaggle-getting-started/">Getting started with Kaggle</a></li>
-</ul>
+<p>It appears that the positive and negative values for men and women is about the same.</p>
+<p>There we have it. We used pandas, gender_guesser and vader to compare genders and positivity of Airbnb review in Seattle.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Next-Steps">Next Steps<a class="anchor-link" href="#Next-Steps">¶</a></h3><p>In the next tutorial we will do a statistical analysis on this data to see if it is significant. We will also compare the standard deviations and do other visualizations.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1188,6 +1515,8 @@ $$c = \sqrt{a^2 + b^2}$$
   </div>
   
 <div class="article-tag-list">
+<span class="label label-default">Tags</span>
+	<a href="http://sorlovsky.github.io/tag/python-pandas.html"><i class="fa fa-tag"></i>python pandas</a>&nbsp;
 </div>  <hr />
   <div class="well well-sm">  <!-- Social media sharing buttons -->
 
@@ -1198,7 +1527,7 @@ $$c = \sqrt{a^2 + b^2}$$
 
     <!-- Facebook -->
     <div class="fb-like" 
-        data-href="http://sorlovsky.github.io/welcome.html" 
+        data-href="http://sorlovsky.github.io/thanksgiving-data-analysis.html" 
         data-layout="button_count" 
         data-action="like" data-show-faces="true" 
         data-share="true">
