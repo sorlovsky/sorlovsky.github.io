@@ -1068,7 +1068,8 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Is their a difference in how men and women rate Airbnb's in Seattle? In this post we're going to be looking at 1500 Airbnb reviews to answer that question.</p>
+<p><strong>DISCLAIMER: I am not trying to make any political or population wide claims, I just came across this dataset and was curious if I could make this analysis happen</strong></p>
+<p>Is there a difference in how men and women rate Airbnb's in Seattle? In this post we're going to be looking at 1500 Airbnb reviews to answer that question.</p>
 <p>The data we will be using can be found on <a href="https://www.kaggle.com/airbnb/seattle">Kaggle</a></p>
 <p>The gender guesser library is a module that gives functions that will decide whether a name is female or male. The vaderSentiment analysis is a library that determines whether a body of text is positive or negative in its sentiment. When joined together we can use these modules to see differences in how men and women review Airbnbs.</p>
 <p>To get started we're going to import the following libraries. They can be installed with pip if you don't have them.</p>
@@ -1181,8 +1182,17 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We currently know the first names of the reviewer but we don't know what gender they are.</p>
-<p>Using the gender_guesser library we can assign each listing a gender</p>
+<p>This is what the data currently looks like. As we can see we don't know gender or sentiment. We just have names and comments.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Determining-Gender">Determining Gender<a class="anchor-link" href="#Determining-Gender">¶</a></h3><p>We currently know the first names of the reviewer but we don't know what gender they are.</p>
+<p>Using the gender_guesser library we can assign a gender to each listing.</p>
 </div>
 </div>
 </div>
@@ -1274,7 +1284,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Next, we need to assign sentiment to each of the reviews.</p>
+<h3 id="Figuring-Out-the-Sentiment-of-the-Reviews">Figuring Out the Sentiment of the Reviews<a class="anchor-link" href="#Figuring-Out-the-Sentiment-of-the-Reviews">¶</a></h3><p>Next, we need to assign sentiment to each of the reviews.</p>
 <p>The polarity score assigned by vader is returned in a dictionary so we're going to need to do a little bit of pandas finagling to get the data in the shape we want it.</p>
 </div>
 </div>
@@ -1468,17 +1478,6 @@ Female negativity score: 0.01214309484193011, Male negativity score: 0.011062277
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Next-Steps">Next Steps<a class="anchor-link" href="#Next-Steps">¶</a></h3><p>In the next tutorial we will do a statistical analysis on this data to see if it is significant. We will also compare the standard deviations and do other visualizations.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
 </div>
 </div>
 </div>
