@@ -1069,10 +1069,10 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>DISCLAIMER: I am not trying to make any political or population wide claims, I just came across this dataset and was curious if I could make this analysis happen</strong></p>
-<p>Is there a difference in how men and women rate Airbnb's in Seattle? In this post we're going to be looking at 1500 Airbnb reviews to answer that question.</p>
+<p>Is there a difference between how men and women rate Airbnb's in Seattle? In this post, we're going to look at 1500 Airbnb reviews to answer this question. We will be scoring differences by measuring the sentiment of the comments in the reviews.</p>
 <p>The data we will be using can be found on <a href="https://www.kaggle.com/airbnb/seattle">Kaggle</a></p>
-<p>The gender guesser library is a module that gives functions that will decide whether a name is female or male. The vaderSentiment analysis is a library that determines whether a body of text is positive or negative in its sentiment. When joined together we can use these modules to see differences in how men and women review Airbnbs.</p>
-<p>To get started we're going to import the following libraries. They can be installed with pip if you don't have them.</p>
+<p>The gender <a href="https://pypi.python.org/pypi/gender-guesser/">guesser library</a> is a module that gives functions that decide whether a name is female or male. We will use this tool to determine the sex of the Airbnb reviewers. The <a href="https://github.com/cjhutto/vaderSentiment">vaderSentiment</a> analysis is a python library that determines whether a body of text is positive or negative in its sentiment. When joined together, we can use these modules to identify differences in how men and women review Airbnbs.</p>
+<p>To get started, we're going to import the following libraries. They can be installed with pip if you don't have them.</p>
 </div>
 </div>
 </div>
@@ -1095,7 +1095,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Next we will read in the data and see what we're working with. We're only going to look at the first 1500 reviews.</p>
+<p>Next, we will read in the data and see what we're working with. We're only going to look at the first 1500 reviews.</p>
 </div>
 </div>
 </div>
@@ -1467,8 +1467,8 @@ Female negativity score: 0.01214309484193011, Male negativity score: 0.011062277
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It appears that the positive and negative values for men and women is about the same.</p>
-<p>There we have it. We used pandas, gender_guesser and vader to compare genders and positivity of Airbnb review in Seattle.</p>
+<p>It appears that the positive and negative values from men and women are about the same.</p>
+<p>There we have it. We used pandas, gender_guesser and vader to compare genders and positivity of Airbnb reviews in Seattle.</p>
 </div>
 </div>
 </div>
@@ -1515,7 +1515,12 @@ Female negativity score: 0.01214309484193011, Male negativity score: 0.011062277
   
 <div class="article-tag-list">
 <span class="label label-default">Tags</span>
-	<a href="http://sorlovsky.github.io/tag/python-pandas-sentiment-analysis-nlp.html"><i class="fa fa-tag"></i>python pandas sentiment-analysis nlp</a>&nbsp;
+	<a href="http://sorlovsky.github.io/tag/python.html"><i class="fa fa-tag"></i>python</a>&nbsp;
+	<a href="http://sorlovsky.github.io/tag/pandas.html"><i class="fa fa-tag"></i>pandas</a>&nbsp;
+	<a href="http://sorlovsky.github.io/tag/sentiment-analysis.html"><i class="fa fa-tag"></i>sentiment-analysis</a>&nbsp;
+	<a href="http://sorlovsky.github.io/tag/nlp.html"><i class="fa fa-tag"></i>nlp</a>&nbsp;
+	<a href="http://sorlovsky.github.io/tag/airbnb.html"><i class="fa fa-tag"></i>airbnb</a>&nbsp;
+	<a href="http://sorlovsky.github.io/tag/seattle.html"><i class="fa fa-tag"></i>seattle</a>&nbsp;
 </div>  <hr />
   <div class="well well-sm">  <!-- Social media sharing buttons -->
 
