@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Piegenstuff</title><link href="http://sorlovsky.github.io/" rel="alternate"></link><link href="http://sorlovsky.github.io/feeds/all.atom.xml" rel="self"></link><id>http://sorlovsky.github.io/</id><updated>2017-08-23T20:00:00-07:00</updated><entry><title>Thanksgiving Data Analysis</title><link href="http://sorlovsky.github.io/thanksgiving-data-analysis.html" rel="alternate"></link><published>2017-08-23T20:00:00-07:00</published><updated>2017-08-23T20:00:00-07:00</updated><author><name>Simon Orlovsky</name></author><id>tag:sorlovsky.github.io,2017-08-23:thanksgiving-data-analysis.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Piegenstuff</title><link href="http://sorlovsky.github.io/" rel="alternate"></link><link href="http://sorlovsky.github.io/feeds/all.atom.xml" rel="self"></link><id>http://sorlovsky.github.io/</id><updated>2017-08-25T20:00:00-07:00</updated><entry><title>Seattle Airbnb Reviews</title><link href="http://sorlovsky.github.io/seattle-airbnb.html" rel="alternate"></link><published>2017-08-25T20:00:00-07:00</published><updated>2017-08-25T20:00:00-07:00</updated><author><name>Simon Orlovsky</name></author><id>tag:sorlovsky.github.io,2017-08-25:seattle-airbnb.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -1419,7 +1419,7 @@ Female negativity score: 0.01214309484193011, Male negativity score: 0.011062277
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="python pandas"></category></entry><entry><title>Welcome to My Blog</title><link href="http://sorlovsky.github.io/welcome.html" rel="alternate"></link><published>2017-08-23T20:00:00-07:00</published><updated>2017-08-23T20:00:00-07:00</updated><author><name>Simon Orlovsky</name></author><id>tag:sorlovsky.github.io,2017-08-23:welcome.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="python pandas sentiment-analysis nlp"></category></entry><entry><title>Welcome to My Blog</title><link href="http://sorlovsky.github.io/welcome.html" rel="alternate"></link><published>2017-08-23T20:00:00-07:00</published><updated>2017-08-23T20:00:00-07:00</updated><author><name>Simon Orlovsky</name></author><id>tag:sorlovsky.github.io,2017-08-23:welcome.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
